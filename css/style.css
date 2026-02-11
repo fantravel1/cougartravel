@@ -319,11 +319,32 @@ section {
     color: var(--color-white);
     padding: var(--space-4xl) var(--space-lg);
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg {
+    background-image: url('https://images.unsplash.com/photo-1660587607538-7010e6e275ca?w=1600&q=80&fit=crop&crop=center');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(44, 36, 32, 0.75) 0%,
+        rgba(44, 36, 32, 0.85) 50%,
+        rgba(44, 36, 32, 0.92) 100%
+    );
 }
 
 .hero-content {
     max-width: var(--max-width-narrow);
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-eyebrow {
@@ -348,7 +369,7 @@ section {
 .hero-subtitle {
     font-size: 1.0625rem;
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.85);
     margin-bottom: var(--space-2xl);
 }
 
@@ -420,6 +441,11 @@ section {
     border-radius: 2px;
 }
 
+.pillar-icon {
+    color: var(--color-sandstone);
+    margin-bottom: var(--space-md);
+}
+
 .pillar h3 {
     font-size: 1.125rem;
     margin-bottom: var(--space-sm);
@@ -486,7 +512,7 @@ section {
 }
 
 /* ============================================================
-   FEATURED DESTINATIONS
+   FEATURED DESTINATIONS — Image Cards
    ============================================================ */
 .featured-destinations {
     background-color: var(--color-white);
@@ -497,12 +523,41 @@ section {
     gap: var(--space-xl);
 }
 
+/* Card with image */
+.destination-card-img {
+    padding: 0;
+    overflow: hidden;
+}
+
+.card-image {
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.destination-card-img:hover .card-image img {
+    transform: scale(1.03);
+}
+
+.card-body {
+    padding: var(--space-xl);
+}
+
+/* Card without image (fallback) */
 .destination-card {
     position: relative;
-    padding: var(--space-xl);
     border: 1px solid rgba(44, 36, 32, 0.08);
     border-radius: 2px;
     transition: border-color var(--transition);
+}
+
+.destination-card:not(.destination-card-img) {
+    padding: var(--space-xl);
 }
 
 .destination-card:hover {
@@ -573,8 +628,16 @@ section {
     border-radius: 2px;
 }
 
+.card-read-more {
+    display: inline-block;
+    margin-top: var(--space-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-accent);
+}
+
 /* ============================================================
-   EXPERIENCES
+   EXPERIENCES — Image Cards
    ============================================================ */
 .experiences-overview {
     background-color: var(--color-linen);
@@ -587,12 +650,39 @@ section {
 
 .experience-category {
     display: block;
-    padding: var(--space-xl);
     background-color: var(--color-white);
     border-radius: 2px;
     text-decoration: none;
     transition: all var(--transition);
     border: 1px solid transparent;
+    overflow: hidden;
+}
+
+.experience-category-img {
+    padding: 0;
+}
+
+.experience-category:not(.experience-category-img) {
+    padding: var(--space-xl);
+}
+
+.exp-image {
+    overflow: hidden;
+}
+
+.exp-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.experience-category-img:hover .exp-image img {
+    transform: scale(1.03);
+}
+
+.exp-body {
+    padding: var(--space-lg);
 }
 
 .experience-category:hover,
@@ -614,15 +704,39 @@ section {
 }
 
 /* ============================================================
-   HOTELS
+   HOTELS — Feature Layout
    ============================================================ */
 .hotels-overview {
     background-color: var(--color-white);
 }
 
+.hotels-feature {
+    display: grid;
+    gap: var(--space-2xl);
+}
+
+.hotels-feature-image {
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.hotels-feature-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.hotels-feature-content p {
+    font-size: 1.0625rem;
+    color: var(--color-muted);
+    line-height: 1.8;
+    margin-bottom: var(--space-2xl);
+}
+
 .hotel-standards {
     display: grid;
     gap: var(--space-xl);
+    margin-bottom: var(--space-2xl);
 }
 
 .standard {
@@ -640,6 +754,10 @@ section {
     font-size: 0.9375rem;
     color: var(--color-muted);
     line-height: 1.6;
+}
+
+.hotels-cta {
+    margin-top: 0;
 }
 
 /* ============================================================
@@ -688,7 +806,7 @@ section {
 }
 
 /* ============================================================
-   ROUTES
+   ROUTES — Image Cards
    ============================================================ */
 .routes-overview {
     background-color: var(--color-white);
@@ -700,14 +818,50 @@ section {
 }
 
 .route-card {
-    padding: var(--space-xl);
     border: 1px solid rgba(44, 36, 32, 0.08);
     border-radius: 2px;
     transition: border-color var(--transition);
+    overflow: hidden;
+}
+
+.route-card-img {
+    padding: 0;
+}
+
+.route-card:not(.route-card-img) {
+    padding: var(--space-xl);
 }
 
 .route-card:hover {
     border-color: var(--color-clay);
+}
+
+.route-image {
+    overflow: hidden;
+}
+
+.route-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.route-card-img:hover .route-image img {
+    transform: scale(1.03);
+}
+
+.route-body {
+    padding: var(--space-xl);
+}
+
+.route-stops {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-sandstone);
+    margin-bottom: var(--space-sm);
 }
 
 .route-card h3 {
@@ -732,10 +886,28 @@ section {
 }
 
 /* ============================================================
-   SAFETY
+   SAFETY — Feature Layout with Image
    ============================================================ */
 .safety-overview {
     background-color: var(--color-linen);
+}
+
+.safety-feature {
+    display: grid;
+    gap: var(--space-2xl);
+}
+
+.safety-feature-image {
+    border-radius: 2px;
+    overflow: hidden;
+    display: none;
+}
+
+.safety-feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 300px;
 }
 
 .safety-grid {
@@ -907,6 +1079,10 @@ section {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .card-image img {
+        height: 240px;
+    }
+
     .experience-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -924,7 +1100,7 @@ section {
     }
 
     .safety-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr;
     }
 
     .footer-grid {
@@ -987,7 +1163,31 @@ section {
     }
 
     .hotel-standards {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hotels-feature {
+        grid-template-columns: 1fr 1.2fr;
+        align-items: start;
+    }
+
+    .hotels-feature-image img {
+        height: 100%;
+        min-height: 500px;
+    }
+
+    /* Safety side-by-side layout */
+    .safety-feature {
+        grid-template-columns: 1.5fr 1fr;
+        align-items: start;
+    }
+
+    .safety-feature-image {
+        display: block;
+    }
+
+    .safety-feature-image img {
+        min-height: 500px;
     }
 
     .footer-grid {
@@ -1006,6 +1206,18 @@ section {
     section {
         padding: var(--space-4xl) 0;
     }
+
+    .card-image img {
+        height: 260px;
+    }
+
+    .exp-image img {
+        height: 240px;
+    }
+
+    .route-image img {
+        height: 200px;
+    }
 }
 
 /* ============================================================
@@ -1015,7 +1227,12 @@ section {
     .site-header,
     .hero-cta,
     .nav-toggle,
-    .section-cta {
+    .section-cta,
+    .card-image,
+    .exp-image,
+    .route-image,
+    .hotels-feature-image,
+    .safety-feature-image {
         display: none;
     }
 
